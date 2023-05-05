@@ -40,8 +40,9 @@
     {% for order in orders %}
     <tr>
       <td><a href="{% url 'onlineStore:order_detail' id=order.id %}">{{order.id }}</a></td>
-      <td>{{order.customer.address}}</td>
-      <td>{{ order.created_date }}</td>
+      <td  style="font-weight:bold; color:black;">{{order.customer.address}}</td>
+      <td  style="font-weight:bold; color:black;">{{ order.created_date }}</td>
+    
     </tr>
     {% endfor %}
 

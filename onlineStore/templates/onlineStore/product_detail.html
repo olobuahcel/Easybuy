@@ -2,12 +2,49 @@
 {% block content %}
 
 <body style="background-color: #f0f0f0;">
+
+  <style>
+		
+        table {
+            border-top: double;
+            border-bottom: double;
+            border-right: blank
+        }
+        thead, tbody, tfoot {
+            border-top: solid;
+            border-bottom: solid
+        }
+        colgroup {
+            border-right: solid
+        }
+
+	</style>
+
     <h4>EasyBuy OnlineStore: Product Details</h4>
+
+    <table class="table table-hover border="1"">
+            <tr>
+                <th style="color:#a52a2a;">ID</th>
+                <th style="color:#a52a2a;">Product</th>
+                <!-- <th style="color:#a52a2a;">Brand</th> -->
+                <th style="color:#a52a2a;">Price ($)</th>
+                <th style="color:#a52a2a;">Date Created</th>
+
+            </tr>
+
+    {% for product in products %}
+            <tr>
+                <th>{{product.id}} <a href="{% url 'onlineStore:product_edit' id=product.id %}">Edit</a></th>
+                <th><b> <a href="{% url 'onlineStore:product_detail' id=product.id %}">{{product.product_type}}</a></b></th>
+                <th>{{product.brand}}</th>
+                <th>{{product.price_usd}}</th>
+                <th>{{product.created_date}}</th>
+            
+            </tr>
+        {% endfor %}  
+        </table> 
     
-    <p>Product {{ product.id }}: <a href="{% url 'onlineStore:product_edit' id=product.id %}">Edit</a>
-      This is product {{ product.product_type }} which costs
-      {{product.price_usd}}. The product was added on: {{ product.created_date }} 
-   </p>
+    
    <p>
     <form action="{% url 'onlineStore:basket_add' product.id %}" method="post">
       {{ basket_product_form }}

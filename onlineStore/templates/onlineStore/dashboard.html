@@ -1,10 +1,57 @@
 {% extends 'onlineStore/base.html' %}
-{% block title %}onlineStore{% endblock %}
-
+{% block title %}Online Store - Customer Orders{% endblock %}
 
 {% block content %}
+  <div style="width: 50%">
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: [{% for item in data %}"{{item.customer_user}}",{% endfor %}],
+        datasets: [{
+          label: 'Number of Orders',
+          data: [{% for item in data %}"{{item.num_orders}}", {% endfor %}],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Number of Orders'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Customer'
+            }
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            text: 'Number of Orders per Customer'
+          }
+        }
+      }
+    });
+  </script>
+{% endblock %}
 
 
+ 
 
 
 

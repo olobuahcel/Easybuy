@@ -19,6 +19,7 @@ class Products(models.Model):
     brand        = models.CharField(max_length=200)
     price_usd   = models.FloatField()
     created_date = models.DateTimeField(auto_now_add=True)
+    
 
     def __str__(self):
         return f"{self.id}, {self.product_type}, {self.brand}, {self.price_usd}, {self.created_date}"

@@ -82,6 +82,16 @@ def dashboard(request):
     try:
         user = request.user
         if user.is_authenticated & user.is_staff:
+            customers = Customer.object.all()
+            order = Order.object.filter(customer__in=customers)
+            data = []
+            for customer in Customers:
+                num_orders = orders.filter(customer= customer).count()
+                data.append({
+                    'customer_user' ==customer.user,
+                    'num_orders' == num_orders,
+
+                })
             return render(request, 'onlineStore/dashboard.html')
         else:
             return redirect('/accounts/login.html')

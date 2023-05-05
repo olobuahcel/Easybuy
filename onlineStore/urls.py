@@ -10,8 +10,8 @@ app_name = 'onlineStore'
 
 # the empty path '' becomes the 'home page
 urlpatterns = [
-        path('index', views.index, name='index'),
-        path('', views.product_list, name='product_list'),
+        path('', views.index, name='index'),
+        path('product_list', views.product_list, name='product_list'),
         path('accounts/', include('django.contrib.auth.urls')),
         path('basket_add/<int:product_id>/', views.basket_add, name ='basket_add'),
         path('basket_remove/<int:product_id>/', views.basket_remove, name ='basket_remove'),

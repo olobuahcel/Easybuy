@@ -33,7 +33,7 @@ There are several steps involved in the development of EasyBuy OnlineStore ecomm
 
 To install the EasyBuy OnlineStore eCommerce Django Web application, please follow these steps below:
 
-1. Clone the repository: `git clone `
+1. Clone the repository: `git clone git@github.com:olobuahcel/Easybuy.git `
 2. Navigate to the project directory: `cd Assessment`
 3. pyenv local 3.10.7 # this sets the local version of python to 3.10.7
 4. Create a virtual environment: `python3 -m venv env`
