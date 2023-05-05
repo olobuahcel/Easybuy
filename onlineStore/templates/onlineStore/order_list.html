@@ -1,0 +1,72 @@
+  {% extends 'onlineStore/base.html' %}
+  {% block content %}
+
+
+    
+    <!-- {% for order in orders %}
+    <p>This is order <b> <a href="{% url 'onlineStore:order_detail' id=order.id %}">{{order.id }}</a></b> for
+       {{order.customer.id}}. The order was placed on: {{ order.created_date }} 
+    </p>
+    {% endfor %} -->
+
+
+<body style="background-color: #f0f0f0;">
+    <h4 style="color:#a52a2a;">Order List</h4>
+
+	<style>
+		
+        table {
+            border-top: double;
+            border-bottom: double;
+            border-right: blank
+        }
+        thead, tbody, tfoot {
+            border-top: solid;
+            border-bottom: solid
+        }
+        colgroup {
+            border-right: solid
+        }
+
+	</style>
+<table class="table table-hover border="1"">
+            <tr>
+                <th style="color:#a52a2a;">Order ID</th>
+                <th style="color:#a52a2a;">Customer Address</th>
+                <th style="color:#a52a2a;">Order Date</th>
+                
+            </tr>      
+      
+    {% for order in orders %}
+    <tr>
+      <td><a href="{% url 'onlineStore:order_detail' id=order.id %}">{{order.id }}</a></td>
+      <td>{{order.customer.address}}</td>
+      <td>{{ order.created_date }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% if orders.has_other_pages %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if orders.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ orders.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ orders.number }} of {{ orders.paginator.num_pages }}.
+            </span>
+
+            {% if orders.has_next %}
+                <a href="?page={{ orders.next_page_number }}">next</a>
+                <a href="?page={{ orders.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endif %}
+
+
+</body>
+    {% endblock %}

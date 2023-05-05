@@ -1,0 +1,50 @@
+{% extends 'onlineStore/base.html' %}
+{% block content %}
+
+<body  style="background-color: #f0f0f0;">
+    <h3>EasyBuy OnlineStore: Your Basket</h3>
+    
+<h3>You have these in your basket:</h3>
+ <table>
+  {% for item in basket %}
+        {% with product=item.product %}
+          <tr>
+            <td>
+              <a href="{% url 'onlineStore:product_detail' id=product.id %}">
+              </a>
+            </td>
+            <td>{{ product.name }}</td>
+            <td>
+              <form action="{% url 'onlineStore:basket_add' product.id %}" method="post">
+                {{ item.update_quantity_form.quantity }}
+                {{ item.update_quantity_form.override }}
+                <input type="submit" value="Update">
+                {% csrf_token %}
+              </form>
+            </td>
+            <td>
+              <form action="{% url 'onlineStore:basket_remove' product.id %}" method="post">
+                <input type="submit" value="Remove">
+                {% csrf_token %}
+              </form>
+            </td>
+            <!-- <td class="num">${{ item.price }}</td> -->
+            <td class="num">${{ item.total_price }}</td>
+          </tr>
+        {% endwith %}
+      {% endfor %}
+      <tr class="total">
+        <td>Total</td>
+        <td colspan="4"></td>
+        <td class="num">${{ basket.get_total_price }}</td>
+      </tr>
+  </table>
+  <p class="text-right">
+    <a href="{% url "onlineStore:product_list" %}" class="button
+    light">Continue shopping</a>
+  </p>
+ 
+   <a href="{% url 'onlineStore:purchase' %}">Purchase</a>
+
+</body>   
+ {% endblock %}

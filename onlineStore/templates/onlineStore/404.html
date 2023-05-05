@@ -1,0 +1,15 @@
+{% extends 'onlineStore/base.html' %}
+
+{% block title %}Page Not Found{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1 class="mt-5">404</h1>
+        <p class="lead">Sorry, the page you are looking for could not be found.</p>
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg mt-3">Go to Home</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'onlineStore/base.html' %}
+    {% block content %}
+
+<body style="background-color: #f0f0f0;">
+
+	<style>
+		
+        table {
+            border-top: double;
+            border-bottom: double;
+            border-right: blank
+        }
+        thead, tbody, tfoot {
+            border-top: solid;
+            border-bottom: solid
+        }
+        colgroup {
+            border-right: solid
+        }
+
+	</style>
+
+    <h3 style="color:#a52a2a;">List of Products</h3>
+    
+    <p><a href="{% url 'onlineStore:product_new' %}">Add a new product</a></p>
+    <p><a href="{% url 'onlineStore:product_new' %}">Index Page</a></p>
+        <table class="table table-hover border="1"">
+            <tr>
+                <th style="color:#a52a2a;">ID</th>
+                <th style="color:#a52a2a;">Product</th>
+                <th style="color:#a52a2a;">Brand</th>
+                <th style="color:#a52a2a;">Price ($)</th>
+                <th style="color:#a52a2a;">Date Created</th>
+
+            </tr>
+
+        {% for product in products %}
+            <tr>
+                <th>{{product.id}}</th>
+                <th><b> <a href="{% url 'onlineStore:product_detail' id=product.id %}">{{product.product_type}}</a></b></th>
+                <th>{{product.brand}}</th>
+                <th>{{product.price_usd}}</th>
+                <th>{{product.created_date}}</th>
+            
+            </tr>
+        {% endfor %}  
+        </table> 
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if products.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ products.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ products.number }} of {{ products.paginator.num_pages }}
+            </span>
+
+            {% if products.has_next %}
+                <a href="?page={{ products.next_page_number }}">next</a>
+                <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+
+</body>    
+    
+{% endblock %}
+
+
+ 

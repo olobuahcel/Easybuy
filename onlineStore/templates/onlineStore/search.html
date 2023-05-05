@@ -1,0 +1,23 @@
+{% extends 'onlineStore/base.html' %}
+
+{% load static %}
+
+{% block content %}
+  <h1>Search Results</h1>
+  <form method="GET">
+    <input type="text" name="query" placeholder="Enter search query...">
+    <input type="submit" value="Search">
+  </form>
+  <hr>
+  {% if query %}
+    <h2>Results for "{{ query }}"</h2>
+    <ul>
+      {% for model in models %}
+        <li><a href="{{ model.get_absolute_url }}">{{ model }}</a></li>
+      {% empty %}
+        <li>No results found.</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+{% endblock %}
