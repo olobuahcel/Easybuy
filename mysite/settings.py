@@ -27,9 +27,9 @@ SECRET_KEY = 'django-insecure-*n8c8g^q42@=(_##)a^69aadmb0y%sm)s70fg+64l(ck^#ul^t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['octaviacecilia-ultraportal-8000.codio-box.uk']
+ALLOWED_HOSTS = ['octaviacecilia-ultraportal-8000.codio-box.uk', 'easybuy.onrender.com']
 
-CSRF_TRUSTED_ORIGINS = ['https://octaviacecilia-ultraportal-8000.codio-box.uk']
+CSRF_TRUSTED_ORIGINS = ['https://octaviacecilia-ultraportal-8000.codio-box.uk', 'https://easybuy.onrender.com']
 
 
 # Application definition
